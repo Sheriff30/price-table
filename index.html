@@ -123,7 +123,7 @@
                              <div class="flex  items-baseline mt-6 mb-2">
                                  <span class="mr-2 text-5xl font-extrabold text-red-500"> <span class="monthly-data" >$49</span> <span class="annnul-data" >$41
                                 </span></span>
-                                <span class="text-gray-500 dark:text-gray-400 mo">/month</span>
+                                <span class="text-gray-500 dark:text-gray-400 monthly-data">/month</span>
                                 <span class="text-gray-500 dark:text-gray-400 annnul-data ">/year</span>
                             </div>
 
@@ -206,7 +206,7 @@
                             <div class="flex  items-baseline mt-6 mb-2">
                                 <span class="mr-2 text-5xl font-extrabold text-red-500"><span class="monthly-data" >$99</span> <span class="annnul-data" >$83
                                 </span> </span>
-                                <span class="text-gray-500 dark:text-gray-400 mo">/month</span>
+                                <span class="text-gray-500 dark:text-gray-400 monthly-data">/month</span>
                                 <span class="text-gray-500 dark:text-gray-400 annnul-data ">/year</span>
                             </div>
 
@@ -533,72 +533,26 @@ document.querySelector('.annnul-btn').addEventListener('click', () => toggleDisp
 
     // 
 
-    const plan15Btn = document.querySelector('.plan-15')
-    const plan30Btn = document.querySelector('.plan-30')
-    const plan50Btn = document.querySelector('.plan-50')
-    const plan100Btn = document.querySelector('.plan-100')
+    const plans = [
+    { btn: '.plan-15', data: '.plan-15-data' },
+    { btn: '.plan-30', data: '.plan-30-data' },
+    { btn: '.plan-50', data: '.plan-50-data' },
+    { btn: '.plan-100', data: '.plan-100-data' }
+];
 
-    const plan15Data = document.querySelectorAll('.plan-15-data')
-    const plan30Data = document.querySelectorAll('.plan-30-data')
-    const plan50Data = document.querySelectorAll('.plan-50-data')
-    const plan100Data = document.querySelectorAll('.plan-100-data')
+plans.forEach(plan => {
+    const btn = document.querySelector(plan.btn);
+    const data = document.querySelectorAll(plan.data);
 
-    plan30Btn.addEventListener('click' , function(){
-        plan15Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan30Data.forEach((e)=>{
-            e.classList.remove('hidden')
-        })
-        plan50Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan100Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-    })
-    plan15Btn.addEventListener('click' , function(){
-        plan15Data.forEach((e)=>{
-            e.classList.remove('hidden')
-        })
-        plan30Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan50Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan100Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-    })
-    plan50Btn.addEventListener('click' , function(){
-        plan15Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan30Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan50Data.forEach((e)=>{
-            e.classList.remove('hidden')
-        })
-        plan100Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-    })
-    plan100Btn.addEventListener('click' , function(){
-        plan15Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan30Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan50Data.forEach((e)=>{
-            e.classList.add('hidden')
-        })
-        plan100Data.forEach((e)=>{
-            e.classList.remove('hidden')
-        })
-    })
+    btn.addEventListener('click', function() {
+        plans.forEach(otherPlan => {
+            if (otherPlan !== plan) {
+                document.querySelectorAll(otherPlan.data).forEach(e => e.classList.add('hidden'));
+            }
+        });
+        data.forEach(e => e.classList.remove('hidden'));
+    });
+});
 
 
     
